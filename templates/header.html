@@ -1,0 +1,150 @@
+{% load static %}
+{% load cart_template_tags %}
+<header class="header headery-style-1">
+    <div class="header-top header-top-1">
+        <div class="container">
+            <div class="row no-gutters align-items-center">
+                <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row">
+                    <!-- <ul class="social social-round mr--20">
+                        <li class="social__item">
+                            <a href="twitter.com" class="social__link">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="social__item">
+                            <a href="plus.google.com" class="social__link">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li class="social__item">
+                            <a href="facebook.com" class="social__link">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="social__item">
+                            <a href="youtube.com" class="social__link">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="social__item">
+                            <a href="instagram.com" class="social__link">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul> -->
+                    <p class="header-text">Free shipping on all domestic orders with coupon code
+                        <span>“Watches2018”</span></p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="header-top-nav d-flex justify-content-lg-end justify-content-center">
+                        <div class="language-selector header-top-nav__item">
+                            <div class="dropdown header-top__dropdown">
+                                <a class="dropdown-toggle" id="languageID" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    EN-GB
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="languageID">
+                                    <a class="dropdown-item" href="#"><img src="{% static 'img/header/1.jpg' %}"
+                                            alt="English"> English</a>
+                                    <a class="dropdown-item" href="#"><img src="{% static 'img/header/2.jpg' %}"
+                                            alt="Français"> Français</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-selector header-top-nav__item">
+                            <div class="dropdown header-top__dropdown">
+
+                                <a class="dropdown-toggle" id="currencyID" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    USD
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="currencyID">
+                                    <a class="dropdown-item" href="#">&euro; Uro</a>
+                                    <a class="dropdown-item" href="#">&pound; Pound Sterling</a>
+                                    <a class="dropdown-item" href="#">&dollar; Us Dollar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info header-top-nav__item">
+                            <div class="dropdown header-top__dropdown">
+                                {% if user.is_authenticated %}
+                                <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{ request.user }}
+                                    <i class="fa fa-angle-down"></i>    
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="userID">
+                                    <a class="dropdown-item" href="{% url 'user:profile' %}">Profile</a>
+                                    <a class="dropdown-item" href="{% url 'user:logout' %}">Log out</a>
+                                </div>
+                                {% else %}
+                                <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    My Account
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="userID">
+                                    <a class="dropdown-item" href="{% url 'user:register' %}">Register</a>
+                                    <a class="dropdown-item" href="{% url 'user:login' %}">Log In</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-middle header-top-1">
+        <div class="container">
+            <div class="row no-gutters align-items-center">
+                <div class="col-md-5 col-sm-6 order-lg-1 order-2">
+                    <div class="contact-info">
+                        <img src="{% static 'img/icons/icon_phone.png' %}" alt="Phone Icon">
+                        <p>Call us <br> Free Support: (012) 800 456 789</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
+                    <a href="{% url 'watch:home' %}" class="logo-box mb-md--30">
+                        <img src="{% static 'img/logo/logo.png' %}" alt="logo">
+                    </a>
+                </div>
+                <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
+                    <div class="header-toolbar">
+                        <div class="search-form-wrapper search-hide">
+                            <form action="{% url 'watch:search_results' %}" class="search-form" method="GET">
+                                <input type="text" name="q" id="search" class="search-form__input"
+                                    placeholder="Search entire store here..">
+                                <button type="submit" class="search-form__submit">
+                                    <i class="icon_search"></i>
+                                </button>
+                            </form>
+                        </div>
+                       
+                        <ul class="header-toolbar-icons">
+                            <li class="search-box">
+                                <a href="#" class="bordered-icon search-btn" aria-expanded="false"><i
+                                        class="icon_search"></i></a>
+                            </li>
+                            <li class="mini-cart-icon">
+                                <div class="mini-cart mini-cart--1">
+                                   
+                                    <a href="{% url 'watch:order-summary' %}"
+                                        class="mini-cart__dropdown-toggle bordered-icon">
+                                        {% if request.user.is_authenticated and request.user|cart_item_count > 0%}
+                                        <span class="mini-cart__count">{{ request.user|cart_item_count }}</span>
+                                        {% endif %}
+                                        <i class="icon_cart_alt mini-cart__icon"></i>
+                                        <!-- <span class="mini-cart__ammount"> <i class="fa fa-angle-down"></i></span> -->
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

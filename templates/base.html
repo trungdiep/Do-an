@@ -1,0 +1,84 @@
+{% load static %}
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from demo.devitems.com/mirora-v2/mirora/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 May 2019 06:15:30 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/icon.png' %}">
+
+    <!-- Title -->
+    <title>Mirora - Watch & Luxury Store Bootstrap 4 Template</title>
+
+    <!-- ************************* CSS Files ************************* -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+    <!-- Elegent Icon CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegent-icons.css' %}">
+
+    <!-- All Plugins CSS css -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+    <!-- modernizr JS
+    ============================================ -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"> </script>
+    <script src="http://casiocdn.com/casio-v2/resource/theme/scripts/modernizr-2.8.3.js"></script>
+    {% block css %}
+
+    {% endblock %}
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %}"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="margin-bottom: 0rem;">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="wrapper bg--shaft">
+        {% include "header.html" %}
+        {% block content%}
+        {% endblock %}
+        {% include "footer.html" %}
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href="#"><i class="fa fa-angle-double-up"></i></a>
+        <!-- Scroll To Top End -->
+    </div>
+    <!-- jQuery JS -->
+    <script src="{% static 'js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/ajax-mail.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block script %}
+
+    {% endblock %}
+</body>
+
+</html>

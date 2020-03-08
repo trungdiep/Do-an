@@ -1,0 +1,103 @@
+{% extends 'base.html '%}
+{% block content %}
+<div class="main-content-wrapper">
+    <div class="login-register-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-md--40">
+                    <h2 class="heading-secondary mb--30">Login</h2>
+                    <div class="login-reg-box p-4 bg--2">
+                        {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+                        <form class="form" id="login-form" method="post">
+                            {%  csrf_token %}
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="username_email">
+                                    Username or email address <span>*</span>
+                                </label>
+                                <input type="text" name="username" id="id_username" class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="password">
+                                    Password <span>*</span>
+                                </label>
+                                <input type="password" name="password" id="id_password" autocomplete="current-password"
+                                    class="form__input form__input--2">
+                            </div>
+                            <div class="form__group d-flex align-items-center">
+                                <button type="submit" class="btn btn-5 btn-style-1 color-1">Login</button>
+                                <div class="custom-checkbox ml--20">
+                                    <input type="checkbox" name="sessionStore" id="sessionStore" class="form__checkbox">
+
+                                    <label for="sessionStore" class="form__checkbox--label">Remember me</label>
+                                </div>
+                            </div>
+                            <a href="{% url 'password_reset' %}" class="forgot-pass">Forgot your password?</a>
+                        </form>
+                        
+                    </div>
+                </div>
+                <!-- <div class="col-lg-6">
+                    <h2 class="heading-secondary mb--30">Register</h2>
+                    <div class="login-reg-box p-4 bg--2">
+                        <form class="form" method="post">
+                            {% csrf_token %}
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_first_name">
+                                    First name
+                                </label>
+                                <input type="text" name="first_name" id="id_first_name"
+                                    class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_last_name">
+                                    Last name
+                                </label>
+                                <input type="text" name="last_name" id="id_last_name"
+                                    class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_username">
+                                    Username
+                                </label>
+                                <input type="text" name="username" id="id_username" class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_email">
+                                    Email address <span>*</span>
+                                </label>
+                                <input type="text" name="email" id="id_password1" class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_password1">
+                                    Password <span>*</span>
+                                </label>
+                                <input type="password" name="password1" id="id_password1"
+                                    class="form__input form__input--2">
+                            </div>
+                            <div class="form__group mb--20">
+                                <label class="form__label" for="id_password2">
+                                    Password confirmation<span>*</span>
+
+                                </label>
+                                <input type="password" name="password2" id="id_password2"
+                                    class="form__input form__input--2">
+                                <p style="font-size: 14px;">Enter the same password as above, for verification
+                                </p>
+                            </div>
+                            <div class="form__group">
+                                <button type="submit" class="btn btn-5 btn-style-2"
+                                    style="margin-left: 185px">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Wrapper End -->
+
+
+{% endblock %}

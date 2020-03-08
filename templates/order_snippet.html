@@ -1,0 +1,60 @@
+<div class="col-lg-6 mt-md--30">
+    <div class="order-details">
+        <h3 class="heading-tertiary">Your Order</h3>
+        <div class="order-table table-content table-responsive mb--30">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_item in order.items.all %}
+                    <tr>
+                        <td>{{order_item.item}} <strong>x{{ order_item.quantity }}</strong>
+                        </td>
+                        <td>${{order_item.get_final_price}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="cart-subtotal">
+                        <th>Cart Subtotal</th>
+                        <td>${{ order.get_total_price }}</td>
+                    </tr>
+                    {% if order.coupon and DISPLAY_COUPON_FORM == True %}
+                    <tr class="cart-subtotal">
+                        <th>Promo code <br>{{ order.coupon }}</th>
+                        <td>${{ order.coupon.amount }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr class="order-total">
+                        <th>Order Total</th>
+                        <td><span class="order-total-ammount">${{ order.get_total_price_with_coupon }}</span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- <div class="checkout-payment">
+                <form action="#" class="payment-form">
+
+                    <div class="payment-group">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" name="termscondition" id="termscondition"
+                                class="form__checkbox">
+
+                            <label for="termscondition"
+                                class="terms-condition-label payment-label">I have read and
+                                agree to the website <a href="index.html">terms and
+                                    conditions.</a></label>
+                        </div>
+                    </div>
+                    <div class="payment-btn-group">
+                        <button type="submit" class="btn btn-style-3">Place Order</button>
+                    </div>
+                </form>
+            </div> -->
+    </div>
+</div>

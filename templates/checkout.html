@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Breadcumb area Start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="page-title">Checkout</h1>
+                <ul class="breadcrumb justify-content-center">
+                    <li><a href="{% url 'watch:home' %}">Home</a></li>
+                    <li class="current"><a href="checkout.html">Checkout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+
+<!-- Main content wrapper start -->
+<div class="main-content-wrapper">
+    <div class="checkout-area pt--40 pb--80 pt-md--30 pb-md--60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- User Action Start -->
+                    <div class="user-actions">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="user-actions__single user-actions__coupon">
+                                    <h3><i class="fa fa-cube"></i> Have A Coupon? <span class="expand_action"
+                                            data-attr="#coupon_info">Click Here To Enter Your Code.</span></h3>
+                                    <div id="coupon_info"
+                                        class="user-actions__form user-actions--coupon hide-in-default">
+                                        <form action="{% url 'watch:add-coupon' %}" class="form" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form__group d-flex">
+                                                <!-- <input type="text" name="code" id="id_code"
+                                                    class="form__input form__input--2 form__input--w285 mr--20"
+                                                    placeholder="Coupon Code"> -->
+                                                {{  couponform.code }}
+                                                <button type="submit" class="btn btn-medium btn-style-3">Apply
+                                                    Coupon</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- User Action End -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="checkout-wrapper bg--2">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout-title">
+                                    <h2>Billing Details</h2>
+                                </div>
+                                <div class="checkout-form">
+                                    <form class="form" method="POST">
+                                        {% csrf_token %}
+                                        <!-- {{form}}
+                                        <div class="payment-btn-group">
+                                            <button type="submit" class="btn btn-style-3">Place Order</button>
+                                        </div> -->
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-md-6 mb-sm--30">
+                                                <label for="billing_fname" class="form__label">First Name
+                                                    <span>*</span></label>
+                                                <input type="text" name="billing_fname" id="billing_fname"
+                                                    value="{{ request.user.first_name }}"
+                                                    class="form__input form__input--2">
+                                            </div>
+                                            <div class="form__group col-md-6">
+                                                <label for="billing_lname" class="form__label">Last Name
+                                                    <span>*</span></label>
+                                                <input type="text" name="billing_lname" id="billing_lname"
+                                                    value="{{ request.user.last_name }}"
+                                                    class="form__input form__input--2">
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-md-6 mb-sm--30">
+                                                <label for="shipping_phone" class="form__label">Phone</label>
+                                                <input type="text" name="shipping_phone" id="shipping_phone"
+                                                    class="form__input form__input--2"
+                                                    value="{{ request.user.userprofile.phone }}">
+                                            </div>
+                                            <div class="form__group col-md-6">
+                                                <label for="shipping_email" class="form__label">Email
+                                                    Address <span>*</span></label>
+                                                <input type="email" name="shipping_email" id="shipping_email"
+                                                    class="form__input form__input--2" value="{{ request.user.email }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <label for="billing_company" class="form__label">Company</label>
+                                                <!-- <input type="text" name="billing_company" id="id_billing_company"
+                                                        class="form__input form__input--2"> -->
+                                                {{ form.billing_company }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <label for="billing_country" class="form__label">Country</label>
+                                                {{ form.billing_country }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <label for="billing_streetAddress" class="form__label">Street
+                                                    Address</label>
+                                                <!-- <input type="text" name="billing_address" id="billing_streetAddress"
+                                                        class="form__input form__input--2"> -->
+                                                {{ form.billing_address}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <label for="billing_apartment" class="form__label">Apartment, suite,
+                                                    unit etc. (optional)</label>
+                                                <!-- <input type="text" name="billing_address2" id="id_billing_address2"
+                                                        class="form__input form__input--2"> -->
+                                                {{ form.billing_address2}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <label for="billing_zip" class="form__label">Post/Zip Code
+                                                    <span>*</span></label>
+                                                <!-- <input type="text" name="billing_zip" id="id_billing_zip"
+                                                        class="form__input form__input--2"> -->
+                                                {{ form.billing_zip }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb--30">
+                                            <div class="form__group col-12">
+                                                <div class="custom-checkbox">
+                                                    <input type="checkbox" name="shipdifferetads" id="shipdifferetads"
+                                                        class="form__checkbox">
+                                                    <label for="shipdifferetads"
+                                                        class="form__checkbox--label shipping-label">Ship To A Different
+                                                        Address?</label>
+                                                </div>
+                                                <div class="ship-box-info hide-in-default mt--30">
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-md-6 mb-sm--30">
+                                                            <label for="billing_fname" class="form__label">First Name
+                                                                <span>*</span></label>
+                                                            <input type="text" name="billing_fname" id="billing_fname"
+                                                                class="form__input form__input--2">
+                                                        </div>
+                                                        <div class="form__group col-md-6">
+                                                            <label for="billing_lname" class="form__label">Last Name
+                                                                <span>*</span></label>
+                                                            <input type="text" name="billing_lname" id="billing_lname"
+                                                                class="form__input form__input--2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-md-6 mb-sm--30">
+                                                            <label for="shipping_phone"
+                                                                class="form__label">Phone</label>
+                                                            <input type="text" name="shipping_phone" id="shipping_phone"
+                                                                class="form__input form__input--2">
+                                                        </div>
+                                                        <div class="form__group col-md-6">
+                                                            <label for="shipping_email" class="form__label">Email
+                                                                Address <span>*</span></label>
+                                                            <input type="email" name="shipping_email"
+                                                                id="shipping_email" class="form__input form__input--2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-12">
+                                                            <label for="shipping_company"
+                                                                class="form__label">Company</label>
+                                                            <!-- <input type="text" name="shipping_company"
+                                                                id="id_shipping_company"
+                                                                class="form__input form__input--2"> -->
+                                                            {{ form.shipping_company }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-12">
+                                                            <label for="shipping_country"
+                                                                class="form__label">Country</label>
+                                                            {{ form.shipping_country }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-12">
+                                                            <label for="shipping_streetAddress"
+                                                                class="form__label">Street Address</label>
+                                                            <!-- <input type="text" name="shipping_address"
+                                                                id="id_shipping_address"
+                                                                class="form__input form__input--2"> -->
+                                                            {{ form.shipping_address }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-12">
+                                                            <label for="shipping_apartment"
+                                                                class="form__label">Apartment, suite, unit etc.
+                                                                (optional)</label>
+                                                            <!-- <input type="text" name="shipping_address2"
+                                                                id="id_shipping_address2"
+                                                                class="form__input form__input--2"> -->
+                                                            {{ form.shipping_address2 }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb--30">
+                                                        <div class="form__group col-12">
+                                                            <label for="shipping_zip" class="form__label">Post/Zip Code
+                                                                <span>*</span></label>
+                                                            <!-- <input type="text" name="shipping_zip" id="id_shipping_zip"
+                                                                class="form__input form__input--2"> -->
+                                                            {{ form.shipping_zip }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- {{ form.payment_option }} -->
+                                        {% for value, name in form.fields.payment_option.choices %}
+                                        <div class="payment-group">
+                                            <div class="custom-radio payment-radio">
+                                                <input type="radio" name="payment_option" id="{{ name }}"
+                                                    value="{{ value }}">
+                                                {% if name == 'Cash On Delivery' %}
+                                                <label class="payment-label" for="{{ name }}">{{ name }}</label>
+                                            </div>
+                                            <div class="payment-info">
+                                                <p>Pay with cash upon delivery.</p>
+                                            </div>
+                                            {% else %}
+                                            <label class="payment-label" for="{{ name }}">
+                                                {{ name }}
+                                                <img src="{% static 'img/others/AM_mc_vs_ms_ae_UK.png' %}"
+                                                    alt="payment">
+                                                <a href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What
+                                                    is PayPal?</a>
+                                            </label>
+                                        </div>
+                                        <div class="payment-info paypal">
+                                            <p>Pay via PayPal; you can pay with your credit card if you don’t
+                                                have a PayPal account.</p>
+                                        </div>
+                                        {% endif %}
+                                </div>
+                                {% endfor %}
+                                <div class="payment-btn-group">
+                                    <button type="submit" class="btn btn-style-3">Place Order</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        {% include 'order_snippet.html' %}
+                    </div>
+                </div>
+                <!-- Checkout Area End -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

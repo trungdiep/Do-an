@@ -1,0 +1,40 @@
+{% extends "admin/change_list.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load mathfilters  %}
+{% load tz %}
+
+{% block content_title %}
+    <h1> {% trans 'Sales Summary' %} </h1>
+{% endblock %}
+
+{% block result_list %}
+<div class="results">
+    <table>
+        <thead>
+            <tr>
+                <th> <div class="text"> <a href="#">User </a> </div> </th>
+                <th> <div class="text"> <a href="#">option_pay </a> </div> </th>
+                <th> <div class="text"> <a href="#">ordered_date</a> </div> </th>
+                <th> <div class="text"> <a href="#"><strong>total</strong></a> </div> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in summary %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td> {{ row.user__username }}</td>
+                <td> {{ row.ref_code }} </td>
+                <td> {{ row.ordered_date }} </td>
+                <td><strong> {{ row.price  }} </strong> </td>
+            </tr>
+            {% endfor %}
+            <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
+                <td> Total </td>
+                <td> {{ summary_total.total }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block pagination %}{% endblock %}

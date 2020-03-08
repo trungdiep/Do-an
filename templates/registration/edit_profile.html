@@ -1,0 +1,60 @@
+{% extends 'my-account.html' %}
+{% block form %}
+    <div class="tab-pane fade active show" id="accountdetails" style="">
+        <div class="account-form bg--2">
+            <form class="form" method="POST" action="">
+                {% csrf_token %}
+                <div class="form-row mb--20">
+                    <div class="col-12">
+                        <div class="form__group">
+                            <label for="user_email" class="form__label">Username</label>
+                            {{form_user.username.value}}
+                            <input type="text" name="username" id="id_username" class="form__input form__input--2"
+                                value="{{form_user.username.value}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb--20">
+                    <div class="col-md-6 mb-sm--20">
+                        <div class="form__group">
+                            <label for="account_fname" class="form__label">First Name</label>
+                            <input type="text" name="first_name" id="id_first_name" value="{{form_user.first_name.value}}"
+                                class="form__input form__input--2">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form__group">
+                            <label for="account_lname" class="form__label">Last Name</label>
+                            <input type="text" name="last_name" id="id_last_name" value="{{form_user.first_name.value}}"
+                                class="form__input form__input--2">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb--20">
+                    <div class="col-12">
+                        <div class="form__group">
+                            <label for="user_email" class="form__label">Email Address</label>
+                            <input type="email" name="email" id="id_email" value="{{form_user.email.value}}"
+                                class="form__input form__input--2">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb--20">
+                    <div class="col-12">
+                        <div class="form__group">
+                            <label for="user_email" class="form__label">Phone</label>
+                            <input type="text" name="phone" id="id_phone" value="{{form.phone.value}}"
+                                class="form__input form__input--2">
+                        </div>
+                    </div>
+                </div>   
+                <div class="form-row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-medium btn-style-2">Save
+                            Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
