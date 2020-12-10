@@ -34,4 +34,5 @@ sqlparse==0.3.0
 stripe==2.42.0
 urllib3==1.25.8
 wrapt==1.11.2
-mathfilters
+django-mathfilters==1.0.0
+
